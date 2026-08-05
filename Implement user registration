@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Registration {
+
+    static Scanner sc = new Scanner(System.in);
+    static ArrayList<CustomerAccount> accounts = new ArrayList<>();
+
+    public static void register() {
+
+        System.out.println("\n--- REGISTRATION ---");
+
+        System.out.print("Enter Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Email: ");
+        String email = sc.nextLine();
+
+        System.out.print("Create Password: ");
+        String password = sc.nextLine();
+
+        System.out.println("\n1. Buyer");
+        System.out.println("2. Seller");
+        System.out.print("Select Role: ");
+        int roleChoice = sc.nextInt();
+        sc.nextLine();
+
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            System.out.println("Fields cannot be empty!");
+            return;
+        }
+
+        String role;
+
+        if (roleChoice == 1) {
+            role = "BUYER";
+        } else if (roleChoice == 2) {
+            role = "SELLER";
+        } else {
+            System.out.println("Invalid role!");
+            return;
+        }
+
+        for (CustomerAccount account : accounts) {
+            if (account.email.equalsIgnoreCase(email)) {
+                System.out.println("Email already exists!");
+                return;
+            }
+        }
+
+        accounts.add(new CustomerAccount(name, email, password, role));
+
+        System.out.println("Registration successful!");
+    }
+}
