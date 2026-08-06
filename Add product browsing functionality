@@ -1,0 +1,67 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Product {
+    String name;
+    double price;
+
+    Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+}
+
+public class JOHNMART {
+
+    static Scanner sc = new Scanner(System.in);
+    static ArrayList<Product> products = new ArrayList<>();
+
+    public static void main(String[] args) {
+
+        products.add(new Product("Laptop", 45000));
+        products.add(new Product("Headphone", 1500));
+        products.add(new Product("Shoes", 2500));
+        products.add(new Product("Bag", 1200));
+        products.add(new Product("Smartphone", 25000));
+        products.add(new Product("Smart Watch", 5000));
+        products.add(new Product("Keyboard", 1200));
+        products.add(new Product("Mouse", 800));
+        products.add(new Product("Monitor", 12000));
+        products.add(new Product("Printer", 9000));
+        products.add(new Product("Power Bank", 1800));
+        products.add(new Product("USB Pen Drive", 700));
+        products.add(new Product("Bluetooth Speaker", 2200));
+        products.add(new Product("Gaming Chair", 15000));
+        products.add(new Product("Office Table", 7000));
+        products.add(new Product("Water Bottle", 300));
+        products.add(new Product("Backpack", 1800));
+        products.add(new Product("T-Shirt", 600));
+        products.add(new Product("Jeans", 1500));
+        products.add(new Product("Sports Shoes", 3200));
+        products.add(new Product("Notebook", 80));
+        products.add(new Product("Pen", 20));
+        products.add(new Product("Calculator", 600));
+        products.add(new Product("Fan", 2500));
+        products.add(new Product("Mixer Grinder", 4500));
+        products.add(new Product("Rice Cooker", 3500));
+        products.add(new Product("Electric Kettle", 1800));
+        products.add(new Product("LED TV", 35000));
+        products.add(new Product("Refrigerator", 28000));
+        products.add(new Product("Washing Machine", 24000));
+
+        System.out.println("\n===== JOHNMART =====");
+        System.out.println("1. Browse Products");
+
+        System.out.println("\n--- PRODUCTS ---");
+
+        for (int i = 0; i < products.size(); i++) {
+            Product p = products.get(i);
+
+            System.out.println(
+                (i + 1) + ". " + p.name + " - Rs." + p.price
+            );
+        }
+
+        sc.close();
+    }
+}
