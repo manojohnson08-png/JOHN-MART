@@ -1,0 +1,16 @@
+#Johnmart
+java console-based JOHNMart application featuring user registration, user login, and admin authentication.
+public class CustomerAccount {
+
+    String name;
+    String email;
+    String password;
+    String role;
+
+    CustomerAccount(String name, String email, String password, String role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+}
