@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Login {
+
+    static Scanner sc = new Scanner(System.in);
+
+    public static void login() {
+
+        System.out.println("\n--- LOGIN ---");
+
+        System.out.print("Enter Email: ");
+        String email = sc.nextLine();
+
+        System.out.print("Enter Password: ");
+        String password = sc.nextLine();
+
+        boolean found = false;
+
+        for (CustomerAccount account : Registration.accounts) {
+
+            if (account.email.equalsIgnoreCase(email)
+                    && account.password.equals(password)) {
+
+                System.out.println("Login successful!");
+                System.out.println("Welcome " + account.name);
+                System.out.println("Role: " + account.role);
+
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Invalid email or password!");
+        }
+    }
+}
