@@ -1,0 +1,165 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class JohnMart {
+
+    static class Product {
+        String name;
+        double price;
+
+        Product(String name, double price) {
+            this.name = name;
+            this.price = price;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<Product> products = new ArrayList<>();
+
+        products.add(new Product("Laptop", 45000));
+        products.add(new Product("Headphone", 1500));
+        products.add(new Product("Shoes", 2500));
+        products.add(new Product("Bag", 1200));
+        products.add(new Product("Smartphone", 25000));
+        products.add(new Product("Smart Watch", 5000));
+        products.add(new Product("Keyboard", 1200));
+        products.add(new Product("Mouse", 800));
+        products.add(new Product("Monitor", 12000));
+        products.add(new Product("Printer", 9000));
+        products.add(new Product("Power Bank", 1800));
+        products.add(new Product("USB Pen Drive", 700));
+        products.add(new Product("Bluetooth Speaker", 2200));
+        products.add(new Product("Gaming Chair", 15000));
+        products.add(new Product("Office Table", 7000));
+        products.add(new Product("Water Bottle", 300));
+        products.add(new Product("Backpack", 1800));
+        products.add(new Product("T-Shirt", 600));
+        products.add(new Product("Jeans", 1500));
+        products.add(new Product("Sports Shoes", 3200));
+        products.add(new Product("Notebook", 80));
+        products.add(new Product("Pen", 20));
+        products.add(new Product("Calculator", 600));
+        products.add(new Product("Fan", 2500));
+        products.add(new Product("Mixer Grinder", 4500));
+        products.add(new Product("Rice Cooker", 3500));
+        products.add(new Product("Electric Kettle", 1800));
+        products.add(new Product("LED TV", 35000));
+        products.add(new Product("Refrigerator", 28000));
+        products.add(new Product("Washing Machine", 24000));
+
+        ArrayList<Product> cart = new ArrayList<>();
+        ArrayList<Integer> quantities = new ArrayList<>();
+
+        System.out.println("======================================");
+        System.out.println("          WELCOME TO JOHNMART");
+        System.out.println("======================================");
+
+        while (true) {
+
+            System.out.println("\n----------- PRODUCT LIST -----------");
+
+            for (int i = 0; i < products.size(); i++) {
+                Product p = products.get(i);
+
+                System.out.printf(
+                    "%2d. %-22s Rs. %.2f%n",
+                    i + 1,
+                    p.name,
+                    p.price
+                );
+            }
+
+            System.out.println("\n0. Place Order");
+            System.out.println("99. Exit");
+
+            System.out.print("\nEnter product number: ");
+            int choice = sc.nextInt();
+
+            if (choice == 99) {
+                System.out.println("\nThank you for visiting JOHNMART!");
+                break;
+            }
+
+            if (choice == 0) {
+
+                if (cart.isEmpty()) {
+                    System.out.println("\nYour cart is empty.");
+                    continue;
+                }
+
+                double total = 0;
+
+                System.out.println("\n========== YOUR CART ==========");
+
+                for (int i = 0; i < cart.size(); i++) {
+
+                    Product p = cart.get(i);
+                    int quantity = quantities.get(i);
+
+                    double itemTotal = p.price * quantity;
+                    total += itemTotal;
+
+                    System.out.printf(
+                        "%-22s x %d = Rs. %.2f%n",
+                        p.name,
+                        quantity,
+                        itemTotal
+                    );
+                }
+
+                System.out.println("--------------------------------");
+                System.out.printf("TOTAL AMOUNT: Rs. %.2f%n", total);
+
+                System.out.print("\nConfirm order? (yes/no): ");
+                String confirm = sc.next();
+
+                if (confirm.equalsIgnoreCase("yes")) {
+
+                    System.out.println("\n======================================");
+                    System.out.println("       ORDER PLACED SUCCESSFULLY");
+                    System.out.println("======================================");
+                    System.out.printf("Total Amount: Rs. %.2f%n", total);
+                    System.out.println("Thank you for shopping at JOHNMART!");
+
+                    break;
+
+                } else {
+                    System.out.println("\nOrder cancelled.");
+                }
+
+                continue;
+            }
+
+            if (choice < 1 || choice > products.size()) {
+                System.out.println("\nInvalid product number!");
+                continue;
+            }
+
+            Product selectedProduct = products.get(choice - 1);
+
+            System.out.println("\nSelected Product: " + selectedProduct.name);
+            System.out.println("Price: Rs. " + selectedProduct.price);
+
+            System.out.print("Enter quantity: ");
+            int quantity = sc.nextInt();
+
+            if (quantity <= 0) {
+                System.out.println("Invalid quantity!");
+                continue;
+            }
+
+            cart.add(selectedProduct);
+            quantities.add(quantity);
+
+            System.out.println(
+                quantity + " x " + selectedProduct.name +
+                " added to cart successfully!"
+            );
+        }
+
+        sc.close();
+    }
+}
