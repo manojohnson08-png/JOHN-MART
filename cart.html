@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOHN MART - Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">JOHN<span>MART</span></div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="orders.html">Orders</a>
+        <a href="cart.html" class="active">Cart 🛒</a>
+    </nav>
+
+    <div class="nav-buttons">
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="register.html" class="register-btn">Register</a>
+    </div>
+
+</header>
+
+<main class="cart-page">
+
+    <div class="page-heading">
+        <p class="small-title">YOUR SHOPPING CART</p>
+        <h1>My Cart 🛒</h1>
+        <p>Review your items before placing your order.</p>
+    </div>
+
+    <div class="cart-layout">
+
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded by JavaScript -->
+        </div>
+
+        <div class="cart-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <strong id="cartSubtotal">₹0</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Delivery</span>
+                <strong>FREE</strong>
+            </div>
+
+            <hr>
+
+            <div class="summary-total">
+                <span>Total</span>
+                <strong id="cartTotal">₹0</strong>
+            </div>
+
+            <button class="checkout-btn" onclick="placeOrder()">
+                Place Order →
+            </button>
+
+            <a href="products.html" class="continue-shopping">
+                ← Continue Shopping
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 JOHN MART. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

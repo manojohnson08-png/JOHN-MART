@@ -1,0 +1,153 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOHN MART - Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">JOHN<span>MART</span></div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="orders.html">Orders</a>
+        <a href="cart.html">Cart 🛒</a>
+    </nav>
+
+    <div class="nav-buttons">
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="register.html" class="register-btn">Register</a>
+    </div>
+
+</header>
+
+<main class="products-page">
+
+    <div class="page-heading">
+        <p class="small-title">JOHN MART STORE</p>
+        <h1>Our Products</h1>
+        <p>Explore our collection of quality electronics.</p>
+    </div>
+
+    <div class="products-grid">
+
+        <div class="product-card">
+
+            <div class="product-image">💻</div>
+
+            <div class="product-info">
+                <span class="category">Electronics</span>
+                <h2>Laptop</h2>
+                <p>Powerful laptop for work and entertainment.</p>
+
+                <div class="product-bottom">
+                    <strong>₹50,000</strong>
+
+                    <button onclick="addToCart(0)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="product-card">
+
+            <div class="product-image">📱</div>
+
+            <div class="product-info">
+                <span class="category">Electronics</span>
+                <h2>Smartphone</h2>
+                <p>Modern smartphone with powerful features.</p>
+
+                <div class="product-bottom">
+                    <strong>₹25,000</strong>
+
+                    <button onclick="addToCart(1)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="product-card">
+
+            <div class="product-image">🎧</div>
+
+            <div class="product-info">
+                <span class="category">Audio</span>
+                <h2>Headphones</h2>
+                <p>Enjoy immersive sound with premium headphones.</p>
+
+                <div class="product-bottom">
+                    <strong>₹2,000</strong>
+
+                    <button onclick="addToCart(2)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="product-card">
+
+            <div class="product-image">⌨️</div>
+
+            <div class="product-info">
+                <span class="category">Accessories</span>
+                <h2>Keyboard</h2>
+                <p>Comfortable and responsive keyboard.</p>
+
+                <div class="product-bottom">
+                    <strong>₹1,500</strong>
+
+                    <button onclick="addToCart(3)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="product-card">
+
+            <div class="product-image">🖱️</div>
+
+            <div class="product-info">
+                <span class="category">Accessories</span>
+                <h2>Mouse</h2>
+                <p>Precise and comfortable wireless mouse.</p>
+
+                <div class="product-bottom">
+                    <strong>₹800</strong>
+
+                    <button onclick="addToCart(4)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 JOHN MART. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```
