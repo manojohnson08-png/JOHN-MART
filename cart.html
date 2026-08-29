@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>JOHN MART - Cart</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,7 +13,9 @@
 
 <header class="navbar">
 
-    <div class="logo">JOHN<span>MART</span></div>
+    <div class="logo">
+        JOHN<span>MART</span>
+    </div>
 
     <nav>
         <a href="index.html">Home</a>
@@ -28,47 +31,103 @@
 
 </header>
 
+
 <main class="cart-page">
 
     <div class="page-heading">
-        <p class="small-title">YOUR SHOPPING CART</p>
-        <h1>My Cart 🛒</h1>
-        <p>Review your items before placing your order.</p>
+
+        <p class="small-title">
+            YOUR SHOPPING CART
+        </p>
+
+        <h1>
+            My Cart 🛒
+        </h1>
+
+        <p>
+            Review your items before placing your order.
+        </p>
+
     </div>
+
 
     <div class="cart-layout">
 
-        <div class="cart-items" id="cartItems">
-            <!-- Cart items will be loaded by JavaScript -->
+        <!-- CART ITEMS -->
+
+        <div id="cartItems">
+
+            <!-- Products will be loaded here by script.js -->
+
         </div>
+
+
+        <!-- ORDER SUMMARY -->
 
         <div class="cart-summary">
 
-            <h2>Order Summary</h2>
+            <h2>
+                Order Summary
+            </h2>
+
 
             <div class="summary-row">
-                <span>Subtotal</span>
-                <strong id="cartSubtotal">₹0</strong>
+
+                <span>
+                    Subtotal
+                </span>
+
+                <strong id="subtotal">
+                    ₹0
+                </strong>
+
             </div>
 
+
             <div class="summary-row">
-                <span>Delivery</span>
-                <strong>FREE</strong>
+
+                <span>
+                    Delivery
+                </span>
+
+                <strong id="shipping">
+                    FREE
+                </strong>
+
             </div>
+
 
             <hr>
 
+
             <div class="summary-total">
-                <span>Total</span>
-                <strong id="cartTotal">₹0</strong>
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="total">
+                    ₹0
+                </strong>
+
             </div>
 
-            <button class="checkout-btn" onclick="placeOrder()">
+
+            <button
+                class="checkout-btn"
+                onclick="checkout()">
+
                 Place Order →
+
             </button>
 
-            <a href="products.html" class="continue-shopping">
+
+            <a
+                href="products.html"
+                class="continue-shopping">
+
                 ← Continue Shopping
+
             </a>
 
         </div>
@@ -77,12 +136,17 @@
 
 </main>
 
+
 <footer>
-    <p>© 2026 JOHN MART. All Rights Reserved.</p>
+
+    <p>
+        © 2026 JOHN MART. All Rights Reserved.
+    </p>
+
 </footer>
+
 
 <script src="script.js"></script>
 
 </body>
 </html>
-
