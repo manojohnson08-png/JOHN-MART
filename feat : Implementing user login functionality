@@ -1,4 +1,4 @@
-import java.util.Scanner;
+zzimport java.util.Scanner;
 
 public class Login {
 
