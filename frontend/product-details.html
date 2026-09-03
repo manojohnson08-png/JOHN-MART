@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details — JOHN MART</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      margin: 2rem 0 3rem;
+    }
+
+    .gallery-main {
+      position: relative;
+      width: 100%;
+      height: 440px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--bg-muted);
+      border: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+    }
+
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-thumbnails {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .thumb-item {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      background: var(--bg-muted);
+      transition: all var(--transition-fast);
+    }
+
+    .thumb-item.active, .thumb-item:hover {
+      border-color: var(--primary);
+    }
+
+    .thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .breadcrumb {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+    }
+    .breadcrumb a:hover {
+      color: var(--primary);
+    }
+
+    .qty-picker {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      width: fit-content;
+      overflow: hidden;
+    }
+
+    .qty-btn {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-muted);
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition-fast);
+    }
+
+    .qty-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .qty-input {
+      width: 50px;
+      height: 40px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      background: white;
+    }
+
+    .trust-badges-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .trust-item i {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div><i class="fa-solid fa-bolt" style="color: var(--accent);"></i> Free Delivery on orders over $50!</div>
+      <div class="top-bar-links">
+        <a href="products.html"><i class="fa-solid fa-tag"></i> Deals</a>
+        <a href="orders.html"><i class="fa-solid fa-truck-fast"></i> Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        JOHN <span>MART</span>
+      </a>
+
+      <div class="search-container">
+        <form class="search-form" id="header-search-form">
+          <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+          <input type="text" class="search-input" id="header-search-input" placeholder="Search products...">
+          <button type="submit" class="search-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+
+      <div class="nav-actions">
+        <a href="wishlist.html" class="action-icon-btn" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-count" id="wishlist-badge-count">0</span>
+        </a>
+
+        <a href="cart.html" class="action-icon-btn" title="Shopping Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count" id="cart-badge-count">0</span>
+        </a>
+
+        <div id="user-nav-area"></div>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="product-details-container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" id="product-breadcrumb">
+      <a href="index.html">Home</a> / <a href="products.html">Products</a> / <span>Loading...</span>
+    </div>
+
+    <!-- Product Details Main Layout -->
+    <div class="product-detail-grid">
+      <!-- Left Column: Gallery -->
+      <div>
+        <div class="gallery-main">
+          <img src="" alt="Product Image" id="main-product-image">
+        </div>
+        <div class="gallery-thumbnails" id="image-thumbnails"></div>
+      </div>
+
+      <!-- Right Column: Specs & Actions -->
+      <div class="detail-info">
+        <span class="badge badge-trending" id="detail-category" style="width: fit-content; margin-bottom: 0.75rem;">Category</span>
+        <h1 id="detail-title" style="font-size: 1.85rem; margin-bottom: 0.75rem; color: var(--secondary);">Product Name</h1>
+
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem;">
+          <div id="detail-stars" style="color: var(--accent); font-size: 1.1rem;">★★★★★</div>
+          <span id="detail-rating-text" style="font-size: 0.88rem; color: var(--text-muted);">4.8 (120 reviews)</span>
+        </div>
+
+        <div style="display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1.25rem;">
+          <span id="detail-price" style="font-size: 2rem; font-weight: 800; color: var(--secondary); font-family: 'Outfit', sans-serif;">$0.00</span>
+          <span id="detail-original-price" style="font-size: 1.1rem; color: var(--text-muted); text-decoration: line-through;"></span>
+          <span id="detail-discount-badge" class="badge badge-discount"></span>
+        </div>
+
+        <p id="detail-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;"></p>
+
+        <!-- Stock Status -->
+        <div id="detail-stock-status" style="margin-bottom: 1.5rem;"></div>
+
+        <!-- Quantity Selector -->
+        <div style="margin-bottom: 1.75rem;">
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Quantity:</label>
+          <div class="qty-picker">
+            <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+            <input type="text" id="detail-qty-input" class="qty-input" value="1" readonly>
+            <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <button class="btn btn-primary btn-lg" style="flex: 1; min-width: 160px;" onclick="addCurrentProductToCart()">
+            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          </button>
+          <button class="btn btn-accent btn-lg" style="flex: 1; min-width: 160px;" onclick="buyNowCurrentProduct()">
+            <i class="fa-solid fa-bolt"></i> Buy Now
+          </button>
+          <button class="btn btn-outline btn-lg" title="Save to Wishlist" onclick="addCurrentProductToWishlist()">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges-grid">
+          <div class="trust-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div><strong>Express Delivery</strong><br>Dispatched in 24h</div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div><strong>Authentic Item</strong><br>100% Guaranteed</div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+            <div><strong>30-Day Return</strong><br>Hassle-free policy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products Section -->
+    <section class="section" id="related-products-section" style="margin-top: 3rem;">
+      <div class="section-header">
+        <h2 class="section-title">Customers Also Viewed</h2>
+      </div>
+      <div class="product-grid" id="related-products-grid"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 JOHN MART. Full Stack E-Commerce Platform. All rights reserved.</div>
+      <div>Designed for Excellence • Powered by Spring Boot & MySQL</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/product-details.js"></script>
+</body>
+</html>

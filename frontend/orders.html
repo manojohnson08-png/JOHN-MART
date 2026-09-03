@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders — JOHN MART</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div><i class="fa-solid fa-bolt" style="color: var(--accent);"></i> Free Delivery on orders over $50!</div>
+      <div class="top-bar-links">
+        <a href="products.html"><i class="fa-solid fa-tag"></i> Deals</a>
+        <a href="orders.html"><i class="fa-solid fa-truck-fast"></i> Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        JOHN <span>MART</span>
+      </a>
+
+      <div class="search-container">
+        <form class="search-form" id="header-search-form">
+          <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+          <input type="text" class="search-input" id="header-search-input" placeholder="Search products...">
+          <button type="submit" class="search-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+
+      <div class="nav-actions">
+        <a href="wishlist.html" class="action-icon-btn" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-count" id="wishlist-badge-count">0</span>
+        </a>
+
+        <a href="cart.html" class="action-icon-btn" title="Shopping Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count" id="cart-badge-count">0</span>
+        </a>
+
+        <div id="user-nav-area"></div>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 2.5rem 1.5rem 4rem;">
+    <div style="margin-bottom: 2rem;">
+      <h1 class="section-title">My Orders</h1>
+      <p class="section-subtitle">Track your delivery progress and review purchase history</p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="orders-empty-state" style="display: none; text-align: center; padding: 5rem 1rem; background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+      <div style="font-size: 3.5rem; color: var(--text-muted); margin-bottom: 1rem;">
+        <i class="fa-solid fa-box-open"></i>
+      </div>
+      <h2 style="margin-bottom: 0.5rem;">No Orders Yet</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.75rem;">You haven't placed any orders with us so far.</p>
+      <a href="products.html" class="btn btn-primary btn-lg">Start Shopping</a>
+    </div>
+
+    <!-- Orders Dynamic List -->
+    <div id="orders-list-container">
+      <!-- Injected by orders.js -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 JOHN MART. Full Stack E-Commerce Platform. All rights reserved.</div>
+      <div>Designed for Excellence • Powered by Spring Boot & MySQL</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>
