@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart — JOHN MART</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .cart-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 2.5rem;
+      padding: 2.5rem 0 4rem;
+    }
+
+    .cart-table-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .cart-table th {
+      background: #f8fafc;
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cart-table td {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    .cart-product-img {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      background: var(--bg-muted);
+    }
+
+    .cart-product-title {
+      font-weight: 600;
+      color: var(--secondary);
+      font-size: 0.95rem;
+      transition: color var(--transition-fast);
+    }
+    .cart-product-title:hover {
+      color: var(--primary);
+    }
+
+    .qty-counter-cart {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      width: fit-content;
+      background: white;
+    }
+
+    .qty-counter-cart .qty-btn {
+      width: 30px;
+      height: 30px;
+      background: var(--bg-muted);
+      font-weight: 700;
+    }
+
+    .qty-counter-cart .qty-value {
+      width: 32px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .cart-remove-btn {
+      background: none;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      transition: color var(--transition-fast);
+    }
+    .cart-remove-btn:hover {
+      color: var(--danger);
+    }
+
+    .summary-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      padding: 1.75rem;
+      height: fit-content;
+    }
+
+    .summary-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .summary-total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 2px dashed var(--border-color);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--secondary);
+      font-family: 'Outfit', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div><i class="fa-solid fa-bolt" style="color: var(--accent);"></i> Free Delivery on orders over $50!</div>
+      <div class="top-bar-links">
+        <a href="products.html"><i class="fa-solid fa-tag"></i> Deals</a>
+        <a href="orders.html"><i class="fa-solid fa-truck-fast"></i> Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        JOHN <span>MART</span>
+      </a>
+
+      <div class="search-container">
+        <form class="search-form" id="header-search-form">
+          <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+          <input type="text" class="search-input" id="header-search-input" placeholder="Search products...">
+          <button type="submit" class="search-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+
+      <div class="nav-actions">
+        <a href="wishlist.html" class="action-icon-btn" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-count" id="wishlist-badge-count">0</span>
+        </a>
+
+        <a href="cart.html" class="action-icon-btn active" title="Shopping Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count" id="cart-badge-count">0</span>
+        </a>
+
+        <div id="user-nav-area"></div>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div style="margin-top: 2rem;">
+      <h1 class="section-title">Shopping Cart</h1>
+      <p class="section-subtitle">Review items in your cart before proceeding to checkout</p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="cart-empty-state" style="display: none; text-align: center; padding: 5rem 1rem; background: white; border-radius: var(--radius-lg); margin: 2rem 0; border: 1px solid var(--border-color);">
+      <div style="font-size: 3.5rem; color: var(--text-muted); margin-bottom: 1rem;">
+        <i class="fa-solid fa-cart-arrow-down"></i>
+      </div>
+      <h2 style="margin-bottom: 0.5rem;">Your Cart is Empty</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">Looks like you haven't added anything to your cart yet.</p>
+      <a href="products.html" class="btn btn-primary btn-lg">Explore Catalog</a>
+    </div>
+
+    <!-- Active Cart Content -->
+    <div class="cart-grid" id="cart-content-wrapper">
+      <!-- Items Table -->
+      <div class="cart-table-card">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body">
+            <!-- Dynamic Cart Items -->
+          </tbody>
+        </table>
+
+        <div style="padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; background: #fafafa; border-top: 1px solid var(--border-color);">
+          <a href="products.html" class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+          </a>
+        </div>
+      </div>
+
+      <!-- Order Summary Card -->
+      <div class="summary-card" id="cart-summary-container">
+        <h3 class="summary-title">Order Summary</h3>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="summary-subtotal" style="font-weight: 600; color: var(--secondary);">$0.00</span>
+        </div>
+
+        <div class="summary-row" id="summary-discount-row" style="display: none; color: var(--success);">
+          <span>Promotional Discount</span>
+          <span id="summary-discount" style="font-weight: 600;">-$0.00</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Estimated Delivery</span>
+          <span id="summary-delivery" style="font-weight: 600;">FREE</span>
+        </div>
+
+        <div class="summary-total-row">
+          <span>Grand Total</span>
+          <span id="summary-grand-total">$0.00</span>
+        </div>
+
+        <a href="checkout.html" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.75rem;" id="proceed-checkout-btn">
+          Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <div style="margin-top: 1.25rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-solid fa-shield-check" style="color: var(--success);"></i> 100% Guaranteed Safe & Secure Checkout
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 JOHN MART. Full Stack E-Commerce Platform. All rights reserved.</div>
+      <div>Designed for Excellence • Powered by Spring Boot & MySQL</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

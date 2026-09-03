@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — JOHN MART</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 2.5rem;
+      padding: 2.5rem 0 4rem;
+    }
+
+    .checkout-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .payment-option-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.85rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .payment-option-card:hover, .payment-option-card:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .payment-option-card input[type="radio"] {
+      accent-color: var(--primary);
+    }
+
+    .order-success-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .success-icon-wrap {
+      width: 76px;
+      height: 76px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 1.5rem;
+      animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.4); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        JOHN <span>MART</span>
+      </a>
+
+      <div style="font-weight: 600; font-size: 0.95rem; color: var(--text-muted);">
+        <i class="fa-solid fa-lock" style="color: var(--success);"></i> Secure SSL Checkout
+      </div>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="btn btn-outline btn-sm">
+          <i class="fa-solid fa-arrow-left"></i> Return to Cart
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div style="margin-top: 2rem;">
+      <h1 class="section-title">Complete Your Order</h1>
+      <p class="section-subtitle">Please enter your delivery address and choose a payment option</p>
+    </div>
+
+    <form id="checkout-form">
+      <div class="checkout-grid">
+        <!-- Left Side: Shipping & Payment Details -->
+        <div>
+          <!-- Shipping Address Card -->
+          <div class="checkout-card">
+            <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--secondary);">
+              <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> 1. Shipping Address
+            </h3>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Full Name *</label>
+                <input type="text" id="shipping-name" class="form-control" placeholder="John Doe" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" id="shipping-email" class="form-control" placeholder="john@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" id="shipping-phone" class="form-control" placeholder="9876543210" required>
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Street Address *</label>
+                <input type="text" id="shipping-address" class="form-control" placeholder="Flat / House No., Landmark, Street Name" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">City *</label>
+                <input type="text" id="shipping-city" class="form-control" placeholder="Bangalore" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">State *</label>
+                <input type="text" id="shipping-state" class="form-control" placeholder="Karnataka" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Pincode / ZIP *</label>
+                <input type="text" id="shipping-pincode" class="form-control" placeholder="560001" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Options Card -->
+          <div class="checkout-card">
+            <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--secondary);">
+              <i class="fa-solid fa-credit-card" style="color: var(--primary);"></i> 2. Select Payment Method
+            </h3>
+
+            <label class="payment-option-card">
+              <input type="radio" name="paymentMethod" value="Cash on Delivery" checked>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; color: var(--secondary);">Cash on Delivery (COD)</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Pay seamlessly upon physical arrival at your door</div>
+              </div>
+              <i class="fa-solid fa-money-bill-wave" style="font-size: 1.4rem; color: var(--success);"></i>
+            </label>
+
+            <label class="payment-option-card">
+              <input type="radio" name="paymentMethod" value="UPI">
+              <div style="flex: 1;">
+                <div style="font-weight: 700; color: var(--secondary);">UPI / QR Instant Pay</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Google Pay, PhonePe, Paytm, BHIM</div>
+              </div>
+              <i class="fa-solid fa-mobile-screen-button" style="font-size: 1.4rem; color: var(--primary);"></i>
+            </label>
+
+            <label class="payment-option-card">
+              <input type="radio" name="paymentMethod" value="Credit/Debit Card">
+              <div style="flex: 1;">
+                <div style="font-weight: 700; color: var(--secondary);">Credit / Debit Card</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Visa, MasterCard, RuPay, Amex</div>
+              </div>
+              <i class="fa-brands fa-cc-visa" style="font-size: 1.4rem; color: #2563eb;"></i>
+            </label>
+          </div>
+        </div>
+
+        <!-- Right Side: Order Summary -->
+        <div>
+          <div class="checkout-card" style="position: sticky; top: 100px;">
+            <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem; color: var(--secondary); padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color);">
+              Order Summary
+            </h3>
+
+            <!-- Items Preview -->
+            <div id="checkout-items-preview" style="max-height: 280px; overflow-y: auto; margin-bottom: 1rem;">
+              <!-- Dynamic Items Preview -->
+            </div>
+
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="checkout-subtotal" style="font-weight: 600; color: var(--secondary);">$0.00</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Delivery Fee</span>
+              <span id="checkout-delivery" style="font-weight: 600; color: var(--success);">FREE</span>
+            </div>
+
+            <div class="summary-total-row">
+              <span>Total Payable</span>
+              <span id="checkout-grand-total">$0.00</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.75rem;" id="place-order-btn">
+              <i class="fa-solid fa-lock"></i> Place Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <!-- Animated Order Success Modal -->
+  <div class="modal-backdrop" id="order-success-modal">
+    <div class="modal-card">
+      <div class="order-success-card">
+        <div class="success-icon-wrap">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2 style="color: var(--secondary); font-size: 1.8rem; margin-bottom: 0.5rem;">Order Placed Successfully!</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Thank you for choosing JOHN MART. Your order has been placed and is being prepared for dispatch.
+        </p>
+
+        <div style="background: var(--bg-muted); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.75rem; text-align: left;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+            <span style="color: var(--text-muted);">Order Reference:</span>
+            <strong id="modal-order-id" style="color: var(--primary);">#JM-1001</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+            <span style="color: var(--text-muted);">Payment Method:</span>
+            <strong id="modal-payment-method">Cash on Delivery</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.95rem; font-weight: 700; border-top: 1px dashed var(--border-color); padding-top: 0.5rem; margin-top: 0.5rem;">
+            <span>Total Amount:</span>
+            <span id="modal-order-total" style="color: var(--secondary);">$0.00</span>
+          </div>
+        </div>
+
+        <a href="orders.html" class="btn btn-primary btn-block btn-lg">
+          <i class="fa-solid fa-box"></i> View Your Orders
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 JOHN MART. Full Stack E-Commerce Platform. All rights reserved.</div>
+      <div>Designed for Excellence • Powered by Spring Boot & MySQL</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

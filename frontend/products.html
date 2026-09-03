@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products — JOHN MART</title>
+  <meta name="description" content="Browse our entire collection of electronics, apparel, kitchen appliances, and accessories with flexible filters and fast delivery.">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <style>
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+    }
+
+    .filter-sidebar {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      height: fit-content;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .filter-section {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .filter-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .filter-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .filter-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+      transition: color var(--transition-fast);
+    }
+
+    .filter-radio-label:hover {
+      color: var(--primary);
+    }
+
+    .filter-radio-label input[type="radio"] {
+      accent-color: var(--primary);
+    }
+
+    .price-inputs {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .price-input {
+      width: 100%;
+      padding: 0.4rem 0.6rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+    }
+
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .sort-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .sort-select {
+      background: white;
+      border: 1.5px solid var(--border-color);
+      padding: 0.45rem 0.8rem;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--secondary);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Notification Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div>
+        <i class="fa-solid fa-bolt" style="color: var(--accent);"></i> 
+        Special Launch Offer: Enjoy <strong>FREE Delivery</strong> on orders over $50!
+      </div>
+      <div class="top-bar-links">
+        <a href="products.html"><i class="fa-solid fa-tag"></i> Deals</a>
+        <a href="orders.html"><i class="fa-solid fa-truck-fast"></i> Track Order</a>
+        <a href="admin.html"><i class="fa-solid fa-lock"></i> Admin</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        JOHN <span>MART</span>
+      </a>
+
+      <div class="search-container">
+        <form class="search-form" id="header-search-form">
+          <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+          <input type="text" class="search-input" id="header-search-input" placeholder="Search products, brands and categories...">
+          <button type="submit" class="search-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+
+      <div class="nav-actions">
+        <a href="wishlist.html" class="action-icon-btn" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-count" id="wishlist-badge-count">0</span>
+        </a>
+
+        <a href="cart.html" class="action-icon-btn" title="Shopping Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count" id="cart-badge-count">0</span>
+        </a>
+
+        <div id="user-nav-area"></div>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <nav class="category-nav">
+      <div class="container category-nav-list" id="nav-category-list">
+        <a href="products.html" class="category-nav-item active">All Products</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Catalog Content -->
+  <main class="container">
+    <div class="catalog-layout">
+      <!-- Sidebar Filters -->
+      <aside class="filter-sidebar" id="filter-sidebar">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.15rem; color: var(--secondary);"><i class="fa-solid fa-sliders"></i> Filters</h3>
+          <button class="btn btn-sm btn-outline" id="clear-filters-btn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Reset</button>
+        </div>
+
+        <!-- Categories Filter -->
+        <div class="filter-section">
+          <div class="filter-title">Category</div>
+          <div id="category-filter-list">
+            <!-- Dynamic radio items -->
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-section">
+          <div class="filter-title">Price Range ($)</div>
+          <div class="price-inputs">
+            <input type="number" id="min-price-input" class="price-input" placeholder="Min" min="0">
+            <span style="color: var(--text-muted);">-</span>
+            <input type="number" id="max-price-input" class="price-input" placeholder="Max" min="0">
+          </div>
+          <button class="btn btn-outline btn-sm btn-block" id="apply-price-filter-btn">Apply Price</button>
+        </div>
+      </aside>
+
+      <!-- Products Grid Area -->
+      <section>
+        <div class="catalog-header">
+          <div>
+            <h1 class="section-title" id="catalog-heading" style="font-size: 1.6rem;">Explore All Products</h1>
+            <div id="products-count-label" style="font-size: 0.85rem; color: var(--text-muted);">Loading products...</div>
+          </div>
+
+          <div class="sort-control">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select" class="sort-select">
+              <option value="newest">Newest Arrivals</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+              <option value="rating">Customer Rating</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dynamic Product Cards Grid -->
+        <div class="product-grid" id="products-catalog-grid">
+          <!-- Populated by products.js -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© 2026 JOHN MART. Full Stack E-Commerce Platform. All rights reserved.</div>
+      <div>Designed for Excellence • Powered by Spring Boot & MySQL</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>
